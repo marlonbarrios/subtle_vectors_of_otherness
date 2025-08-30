@@ -2,6 +2,8 @@
 
 An interactive generative art installation that reveals how seemingly reasonable language creates division and exclusion through subtle mechanisms of othering.
 
+<img src="00-homepage-hero-image.png" alt="Subtle Vectors of Otherness - Home Page" width="100%">
+
 ## About the Installation
 
 **Subtle Vectors of Otherness** is a critical media art installation designed for art exhibitions that explores the origins and mechanisms of racism, colonialism, and oppression. The work examines how language—even when it appears neutral or beneficial—can carry hidden vectors of otherness that create division and exclusion.
