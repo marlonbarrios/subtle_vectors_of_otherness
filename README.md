@@ -2,6 +2,8 @@
 
 An interactive generative art installation that reveals how seemingly reasonable language creates division and exclusion through subtle mechanisms of othering.
 
+**🌐 [Experience the Live Installation](https://subtle-vectors-of-otherness.vercel.app/)**
+
 <img src="00-homepage-hero-image.png" alt="Subtle Vectors of Otherness - Home Page" width="100%">
 
 ## About the Installation
@@ -51,13 +53,17 @@ The installation reveals how oppression operates through language at multiple le
 - **Cultural Sensitivity**: Language-specific considerations and culturally appropriate content
 
 ### 🎨 **Interactive Experience**
+- **Symmetrical Interface**: Perfectly balanced model selection (top-left) and language selection (top-right)
 - **Spacebar Generation**: Press spacebar to generate new content
 - **Language Selection**: Scrollable dropdown menu with all available languages
+- **Model Selection**: Choose between GPT-4 and GPT-5 for different analysis styles
 - **Responsive Design**: Adapts to different screen sizes and devices
 - **Smooth Animations**: Dynamic loading animation with curly vector patterns
+- **Minimal Design**: Clean grayscale interface suitable for exhibition spaces
 
 ### 🧠 **AI-Powered Content**
-- **GPT-4 Integration**: Advanced natural language processing for content generation
+- **Dual Model Support**: Choice between GPT-4 (default, reliable) and GPT-5 (advanced reasoning)
+- **Model Selection Interface**: Top-left button for switching between AI models
 - **Memory System**: Prevents repetition and builds contextual awareness
 - **Fact-Checking**: Strict requirements for historically accurate quotes and sources
 - **Educational Context**: Comprehensive "otherness analysis" for each quote
@@ -99,14 +105,17 @@ The installation reveals how oppression operates through language at multiple le
 ## How to Use
 
 ### **For Exhibition Visitors:**
-1. **Select Language**: Click the language dropdown in the top-right corner
-2. **Read Definition**: The home page explains what "Subtle Vectors of Otherness" means
-3. **Generate Content**: Press SPACEBAR to generate a quote and analysis
-4. **Navigate**: Press ESC to return to the home page, SPACEBAR to generate new content
-5. **Change Languages**: Access the language menu at any time to switch languages
+1. **Choose AI Model**: Click the model button (top-left) to select GPT-4 or GPT-5
+2. **Select Language**: Click the language dropdown (top-right) to choose from 70+ languages
+3. **Read Definition**: The home page explains what "Subtle Vectors of Otherness" means
+4. **Generate Content**: Press SPACEBAR to generate a quote and analysis
+5. **Navigate**: Press ESC to return to the home page, SPACEBAR to generate new content
+6. **Switch Models**: Try different AI models to compare analysis styles
 
 ### **For Curators and Exhibitors:**
 - **Full-screen Mode**: The installation is designed for full-screen display
+- **Model Control**: Choose GPT-4 for reliable, cost-effective operation or GPT-5 for advanced analysis
+- **Symmetrical Design**: Professional interface with balanced corner controls
 - **No Internet Required**: Once loaded, works offline (except for new generations)
 - **Accessible**: Supports screen readers and keyboard navigation
 - **Educational**: Each quote includes context about why it demonstrates otherness
@@ -119,7 +128,8 @@ The installation reveals how oppression operates through language at multiple le
 - **Vanilla JavaScript**: No framework dependencies for maximum compatibility
 
 ### **AI Integration**
-- **OpenAI GPT-4**: Advanced language model for content generation
+- **Dual Model Support**: GPT-4 (default) and GPT-5 with model-specific optimizations
+- **Smart Configuration**: Reasoning parameters for GPT-5, temperature control for GPT-4
 - **Custom Prompts**: Sophisticated prompt engineering for educational content
 - **Multi-language Support**: Consistent generation across all supported languages
 
@@ -127,6 +137,7 @@ The installation reveals how oppression operates through language at multiple le
 - **Liquid Typography**: Custom text wrapping and sizing system
 - **Font Management**: Language-specific font stacks for proper character display
 - **Responsive Layout**: Adapts to content length and screen size
+- **Symmetrical UI**: Perfectly balanced interface with identical button styling
 
 ## Content Guidelines
 
@@ -159,10 +170,27 @@ This installation serves as:
 
 The installation prioritizes voices from the Global South and marginalized communities, countering the dominance of Western perspectives in discussions of oppression and otherness. Through multilingual presentation and culturally sensitive analysis, the work demonstrates how these mechanisms operate across different cultural contexts.
 
+## Interface Design
+
+### **Symmetrical Layout**
+The installation features a carefully designed symmetrical interface:
+- **Top-Left**: Model selection button (GPT-4/GPT-5) 
+- **Top-Right**: Language selection button (70+ languages)
+- **Identical Styling**: Both buttons use matching grayscale colors and dimensions
+- **Perfect Balance**: 10px margins from corners with 100px × 30px button size
+- **Professional Appearance**: Clean, minimal design suitable for gallery exhibition
+
+### **Visual Harmony**
+- **Grayscale Palette**: Subtle, non-intrusive button styling
+- **Consistent Typography**: Responsive text sizing across all interface elements  
+- **Cultural Sensitivity**: Clean design works across all cultural contexts
+- **Exhibition Ready**: Professional aesthetic appropriate for museum spaces
+
 ## Technical Support
 
 ### **Common Issues:**
-- **API Key Problems**: Ensure your OpenAI API key is valid and has GPT-4 access
+- **API Key Problems**: Ensure your OpenAI API key is valid and has GPT-4/GPT-5 access
+- **Model Selection**: GPT-4 is more reliable; try switching if GPT-5 isn't working
 - **Font Display**: Some languages may require additional system fonts
 - **Performance**: Close other applications if experiencing lag during generation
 

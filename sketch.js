@@ -21,6 +21,18 @@ let showLanguageMenu = false;
 let languageMenuButton = null;
 let languageScrollOffset = 0; // For scrolling through languages
 
+// Model selection system
+let selectedModel = "gpt-4";
+let showModelMenu = false;
+let modelMenuButton = null;
+let modelScrollOffset = 0;
+
+// Available AI models (simplified)
+const availableModels = [
+  { id: "gpt-5", name: "GPT-5", description: "Latest reasoning model with advanced capabilities" },
+  { id: "gpt-4", name: "GPT-4", description: "Reliable previous generation model" }
+];
+
 // Available languages that GPT-4 can effectively handle
 const availableLanguages = [
   "English", "Spanish", "French", "German", "Italian", "Portuguese", 
@@ -239,6 +251,79 @@ let usedAuthors = new Set(); // Store used author names
 let generationHistory = []; // Store full generation context
 let contextualMemory = []; // Store themes and patterns from previous generations
 
+// Generate or retrieve persistent user ID
+function getUserId() {
+  let userId = localStorage.getItem('subtleVectorsUserId');
+  if (!userId) {
+    userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('subtleVectorsUserId', userId);
+    console.log('New user ID created:', userId);
+  }
+  return userId;
+}
+
+// Load memory from localStorage on startup
+function loadMemoryFromStorage() {
+  try {
+    const userId = getUserId();
+    const storedQuotes = localStorage.getItem(`usedQuotes_${userId}`);
+    const storedAuthors = localStorage.getItem(`usedAuthors_${userId}`);
+    const storedHistory = localStorage.getItem(`generationHistory_${userId}`);
+    
+    if (storedQuotes) {
+      usedQuotes = new Set(JSON.parse(storedQuotes));
+      console.log(`Loaded ${usedQuotes.size} quotes from localStorage for user ${userId}`);
+    }
+    
+    if (storedAuthors) {
+      usedAuthors = new Set(JSON.parse(storedAuthors));
+      console.log(`Loaded ${usedAuthors.size} authors from localStorage for user ${userId}`);
+    }
+    
+    if (storedHistory) {
+      generationHistory = JSON.parse(storedHistory);
+      console.log(`Loaded ${generationHistory.length} history items from localStorage for user ${userId}`);
+    }
+  } catch (error) {
+    console.log('No previous memory found or error loading:', error);
+  }
+}
+
+// Save memory to localStorage with user-specific keys
+function saveMemoryToStorage() {
+  try {
+    const userId = getUserId();
+    localStorage.setItem(`usedQuotes_${userId}`, JSON.stringify([...usedQuotes]));
+    localStorage.setItem(`usedAuthors_${userId}`, JSON.stringify([...usedAuthors]));
+    localStorage.setItem(`generationHistory_${userId}`, JSON.stringify(generationHistory));
+    console.log(`Memory saved to localStorage for user ${userId}`);
+  } catch (error) {
+    console.log('Error saving memory:', error);
+  }
+}
+
+// Clear all memory for current user (accessible via browser console for curators)
+function clearMemory() {
+  const userId = getUserId();
+  usedQuotes.clear();
+  usedAuthors.clear();
+  generationHistory = [];
+  contextualMemory = [];
+  localStorage.removeItem(`usedQuotes_${userId}`);
+  localStorage.removeItem(`usedAuthors_${userId}`);
+  localStorage.removeItem(`generationHistory_${userId}`);
+  console.log(`All memory cleared for user ${userId}. Fresh start enabled.`);
+}
+
+// Create new user session (for exhibition reset)
+function resetUserSession() {
+  const oldUserId = getUserId();
+  localStorage.removeItem('subtleVectorsUserId');
+  clearMemory();
+  const newUserId = getUserId();
+  console.log(`User session reset from ${oldUserId} to ${newUserId}`);
+}
+
 // LANGUAGE-SPECIFIC FONT SUPPORT
 function getFontForLanguage(language, fontType = 'serif') {
   const fontFamilies = {
@@ -384,8 +469,17 @@ function addToMemory(quote, author) {
   let quoteHash = hashString(quote.toLowerCase().trim());
   let authorName = author.toLowerCase().trim();
   
+  // Store multiple variations to catch near-duplicates
+  let quoteCleaned = quote.toLowerCase().replace(/[^\w\s]/g, '').trim();
+  let quoteWords = quoteCleaned.split(/\s+/).filter(word => word.length > 3);
+  let significantWords = quoteWords.slice(0, 10).join(' '); // First 10 significant words
+  
   usedQuotes.add(quoteHash);
+  usedQuotes.add(hashString(quoteCleaned));
+  usedQuotes.add(hashString(significantWords));
   usedAuthors.add(authorName);
+  
+  console.log(`Added to memory: ${authorName} (${usedAuthors.size} total authors, ${usedQuotes.size} quote variations)`);
   
   // Extract themes for contextual memory
   const themes = extractContextualThemes(quote);
@@ -407,6 +501,9 @@ function addToMemory(quote, author) {
   if (generationHistory.length > 50) {
     generationHistory.shift();
   }
+  
+  // Save updated memory to localStorage
+  saveMemoryToStorage();
 }
 
 function getCurrentInterfaceText() {
@@ -414,23 +511,71 @@ function getCurrentInterfaceText() {
   return translations[selectedLanguage] || translations["English"];
 }
 
+function getCurrentPrompt() {
+  // Return the current prompt being used for generation
+  return `This is part of "Subtle Vectors of Otherness," a critical media art installation examining the origins and mechanisms of racism, colonialism, and oppression in ${selectedLanguage}. 
+
+CRITICAL REQUIREMENTS: Generate content that reveals EXTREMELY SUBTLE VECTORS OF OTHERNESS - focus on statements that appear COMPLETELY REASONABLE, HELPFUL, or even PROGRESSIVE but contain hidden mechanisms of exclusion. Avoid any obviously problematic language. Instead, select quotes that seem neutral, supportive, or well-intentioned but unconsciously create otherness through:
+- INVISIBLE ASSUMPTIONS about normalcy or belonging
+- BENEVOLENT EXCLUSION disguised as help or protection  
+- MERITOCRATIC LANGUAGE that ignores systemic barriers
+- PROTECTIVE DISCOURSE that actually limits agency
+- WELL-MEANING GENERALIZATIONS that create categories of difference
+The subtlety should be so profound that the otherness mechanism requires careful analysis to detect.
+
+PROPER ATTRIBUTION MANDATORY: Provide a REAL, VERIFIED historical quote with complete source details (author, year, publication/speech, location).
+
+EDUCATIONAL JUSTIFICATION: This is for artistic and educational purposes to critically examine harmful perspectives and reveal how oppression operates through language.
+
+OTHERNESS ANALYSIS REQUIRED: Explain HOW this quote creates "otherness" by targeting specific groups as different, inferior, or threatening. Cover ALL forms of oppression including race, gender, sexuality, class, disability, religion, age, nationality, body size, neurodiversity, education level, and INTERSECTIONALITY between these categories.
+
+FACT-CHECKING MANDATE: Every quote must be factually verified with complete citation details. NO fictional or paraphrased content.
+
+PRIORITIZE CONTEMPORARY & DIVERSE SOURCES: Focus on RECENT leaders, thinkers, and public figures (2000-2024) from Global South, Indigenous communities, marginalized voices, and contemporary discourse. Include modern politicians, activists, academics, tech leaders, cultural figures, and public intellectuals who shape current debates. Emphasize CONTEMPORARY RELEVANCE over historical figures.
+
+SPECIAL NOTE FOR AFRICAN LANGUAGES: Use proper tone marks when available. If technical limitations exist, provide English quote with African cultural context analysis.
+
+COMPLEXITY AND NUANCE: Focus on statements that demonstrate how language functions as a vector of otherness through:
+- COMPLEX CONDITIONS: Social, political, and cultural contexts that shape meaning
+- POWER DYNAMICS: How authority, privilege, and social position influence language impact  
+- UNINTENDED CONSEQUENCES: How well-intentioned language can still create exclusion
+- SYSTEMIC PATTERNS: How individual statements reflect broader structural inequalities
+- LINGUISTIC SUBTLETY: Word choices, framing, and assumptions that shape perception
+
+SUBTLETY MANDATE: Focus EXCLUSIVELY on statements that appear positive, neutral, or beneficial (95%). The language should be so seemingly innocent that viewers initially struggle to identify the problematic aspects. Examples should include:
+- SUPPORTIVE STATEMENTS that inadvertently patronize or limit
+- INCLUSIVE LANGUAGE that actually reinforces categories of difference
+- PROGRESSIVE RHETORIC that maintains existing power structures
+- HELPFUL ADVICE that assumes deficit rather than systemic barriers
+- EMPATHETIC EXPRESSIONS that distance rather than connect
+Only use overtly problematic examples sparingly (5%) and only when they reveal broader patterns of subtle exclusion.
+
+STRICT NO-REPETITION POLICY: This user has already seen content from these authors: ${[...usedAuthors].join(', ')}. You MUST select a completely different author who has NEVER been used before for this user. Focus on NEW contemporary voices (2000-2024) including modern politicians, activists, tech leaders, academics, cultural figures, and public intellectuals. If you cannot find a new author, provide the most recent contemporary source available that hasn't been used.
+
+Generate in ${selectedLanguage}:
+Quote: "[actual verified quote]"
+— [Full Name, Complete Date, Complete Publication/Speech Details, Location]
+
+Context: [DEEP SUBTLETY ANALYSIS - Write EXACTLY 2-3 concise sentences covering: (1) HOW this seemingly positive/neutral statement unconsciously creates otherness through HIDDEN ASSUMPTIONS about normalcy, capability, or belonging (considering race, gender, sexuality, class, disability, religion, age, nationality, body, neurodiversity, education, etc.), (2) WHAT invisible power structures and systemic barriers this "helpful" or "supportive" language actually reinforces, despite appearing benevolent or progressive, (3) WHY this example demonstrates how the most dangerous othering occurs through language that APPEARS COMPLETELY REASONABLE and well-intentioned, making it harder to detect and challenge. Focus on revealing the profound subtlety of how everyday, seemingly positive discourse can perpetuate exclusion. Be specific about the form(s) of oppression involved and the GEOGRAPHIC/CULTURAL CONTEXT where this occurred. REQUIRED: Factually verified source with complete publication/speech details including location and historical circumstances.]`;
+}
+
 function drawLanguageMenu(p) {
-  // Language menu button - ensure it stays within canvas bounds
-  let buttonW = 100;
-  let buttonH = 30;
-  let buttonX = Math.max(10, p.width - buttonW - 20); // Min 10px from left edge
-  let buttonY = 15; // Smaller top margin
+  // Language menu button - use same positioning as model button
+  let buttonW = languageMenuButton ? languageMenuButton.w : 100;
+  let buttonH = languageMenuButton ? languageMenuButton.h : 30;
+  let buttonX = languageMenuButton ? languageMenuButton.x : (p.width - 110);
+  let buttonY = languageMenuButton ? languageMenuButton.y : 10;
   
-  // Draw button
-  p.fill(showLanguageMenu ? p.color(200) : p.color(240));
-  p.stroke(p.color(100));
+  // Draw button (same style as model button)
+  p.fill(p.color(40, 40, 40, 80)); // Same subtle background
+  p.stroke(p.color(80, 80, 80, 120)); // Same border color
   p.strokeWeight(1);
-  p.rect(buttonX, buttonY, buttonW, buttonH, 5);
+  p.rect(buttonX, buttonY, buttonW, buttonH, 4); // Same corner radius
   
-  // Button text with proper font for the language
-  p.fill(p.color(50));
+  // Button text with proper font for the language (same style as model button)
+  p.fill(p.color(60, 60, 60, 180)); // Same text color
   p.textAlign(p.CENTER, p.CENTER);
-  p.textSize(12);
+  p.textSize(Math.max(9, Math.min(11, p.width * 0.007))); // Same responsive text size as model button
   p.textFont(getFontForLanguage(selectedLanguage, 'sansSerif'));
   p.noStroke();
   console.log(`Displaying button text: "${selectedLanguage}"`);
@@ -506,6 +651,140 @@ function drawLanguageMenu(p) {
   }
 }
 
+function drawModelMenu(p) {
+  if (!modelMenuButton) {
+    console.log('Model menu button not initialized');
+    return;
+  }
+  
+  // Model selection button (minimal design)
+  p.push();
+  p.fill(p.color(40, 40, 40, 80)); // Subtle background
+  p.stroke(p.color(80, 80, 80, 120));
+  p.strokeWeight(1);
+  p.rect(modelMenuButton.x, modelMenuButton.y, modelMenuButton.w, modelMenuButton.h, 4);
+  
+  // Button text (minimal)
+  p.fill(p.color(60, 60, 60, 180));
+  p.textAlign(p.CENTER, p.CENTER);
+  p.textSize(Math.max(9, Math.min(11, p.width * 0.007)));
+  p.textFont(getFontForLanguage(selectedLanguage, 'sansSerif'));
+  let currentModel = availableModels.find(m => m.id === selectedModel);
+  let displayText = currentModel ? currentModel.name : selectedModel;
+  p.text(displayText, 
+         modelMenuButton.x + modelMenuButton.w/2, 
+         modelMenuButton.y + modelMenuButton.h/2);
+  
+  // Debug: Log button position and model info
+  if (Math.random() < 0.01) { // Only log occasionally to avoid spam
+    console.log(`Model button: x=${modelMenuButton.x}, y=${modelMenuButton.y}, w=${modelMenuButton.w}, h=${modelMenuButton.h}`);
+    console.log(`Current model: ${selectedModel}, Available models: ${availableModels.length}`);
+  }
+  
+  if (showModelMenu) {
+    console.log('Rendering model dropdown menu'); // Debug
+    
+    // Calculate dynamic dropdown width based on longest model name and description
+    let maxTextWidth = 0;
+    p.textSize(Math.max(10, Math.min(12, p.width * 0.007)));
+    p.textStyle(p.BOLD);
+    
+    for (let model of availableModels) {
+      let nameWidth = p.textWidth(model.name);
+      let descText = model.description;
+      if (descText.length > 60) {
+        descText = descText.substring(0, 57) + "...";
+      }
+      p.textSize(Math.max(8, Math.min(9, p.width * 0.006)));
+      p.textStyle(p.NORMAL);
+      let descWidth = p.textWidth(descText);
+      let totalWidth = Math.max(nameWidth, descWidth);
+      maxTextWidth = Math.max(maxTextWidth, totalWidth);
+    }
+    
+    // Dynamic dropdown width
+    let dropdownWidth = Math.max(modelMenuButton.w, maxTextWidth + 40); // Ensure it's at least as wide as button
+    
+    // Dropdown background
+    let menuY = modelMenuButton.y + modelMenuButton.h + 5;
+    let itemHeight = 45; // Reasonable item height
+    let maxMenuHeight = Math.min(300, p.height - menuY - 50); // Conservative height
+    let maxVisible = Math.floor(maxMenuHeight / itemHeight);
+    let menuHeight = Math.min(maxMenuHeight, availableModels.length * itemHeight);
+    
+    // Ensure minimum height to show at least 3 items
+    if (menuHeight < itemHeight * 3) {
+      menuHeight = Math.min(itemHeight * 3, availableModels.length * itemHeight);
+    }
+    
+    p.fill(p.color(250, 250, 250, 250)); // More opaque
+    p.stroke(p.color(120, 120, 120, 200));
+    p.strokeWeight(2);
+    p.rect(modelMenuButton.x, menuY, dropdownWidth, menuHeight, 6);
+    
+    // Model items
+    let visibleModels = availableModels.slice(modelScrollOffset, modelScrollOffset + maxVisible);
+    
+    // Debug: Only log when menu is first opened
+    if (modelScrollOffset === 0) {
+      console.log(`Model menu opened: ${availableModels.length} total models, ${maxVisible} max visible`);
+    }
+    
+    for (let i = 0; i < visibleModels.length; i++) {
+      let model = visibleModels[i];
+      let itemY = menuY + i * itemHeight;
+      
+      // Hover effect
+      if (p.mouseX >= modelMenuButton.x && p.mouseX <= modelMenuButton.x + dropdownWidth &&
+          p.mouseY >= itemY && p.mouseY <= itemY + itemHeight) {
+        p.fill(p.color(200, 200, 255, 100));
+        p.noStroke();
+        p.rect(modelMenuButton.x, itemY, dropdownWidth, itemHeight);
+      }
+      
+      // Selected model highlight
+      if (model.id === selectedModel) {
+        p.fill(p.color(100, 150, 255, 80));
+        p.noStroke();
+        p.rect(modelMenuButton.x, itemY, dropdownWidth, itemHeight);
+      }
+      
+      // Model name
+      p.fill(p.color(40, 40, 40, 220));
+      p.textAlign(p.LEFT, p.TOP);
+      p.textSize(Math.max(10, Math.min(12, p.width * 0.007)));
+      p.textStyle(p.BOLD);
+      p.text(model.name, modelMenuButton.x + 10, itemY + 6);
+      
+      // Model description (with more room now)
+      p.fill(p.color(80, 80, 80, 180));
+      p.textSize(Math.max(8, Math.min(9, p.width * 0.006)));
+      p.textStyle(p.NORMAL);
+      // Allow longer descriptions with dynamic width
+      let descText = model.description;
+      let maxDescWidth = dropdownWidth - 40; // Leave padding
+      p.textSize(Math.max(8, Math.min(9, p.width * 0.006)));
+      
+      // Smart text truncation based on actual width
+      while (p.textWidth(descText) > maxDescWidth && descText.length > 10) {
+        descText = descText.substring(0, descText.length - 4) + "...";
+      }
+      p.text(descText, modelMenuButton.x + 10, itemY + 22);
+    }
+    
+    // Scroll indicators if needed
+    if (availableModels.length > maxVisible) {
+      p.fill(p.color(100, 100, 100, 120));
+      p.textAlign(p.RIGHT, p.CENTER);
+      p.textSize(8);
+      p.text(`${modelScrollOffset + 1}-${Math.min(modelScrollOffset + maxVisible, availableModels.length)} of ${availableModels.length}`, 
+             modelMenuButton.x + dropdownWidth - 10, menuY + menuHeight + 12);
+    }
+  }
+  
+  p.pop();
+}
+
 function handleFooterClick(p, mouseX, mouseY) {
   // Check if we're on the home page and footer is visible
   if (!isLoading || p.height <= 400) return false;
@@ -529,6 +808,84 @@ function handleFooterClick(p, mouseX, mouseY) {
       mouseY >= portfolioLineY - 8 && mouseY <= portfolioLineY + 8) {
     // Open Marlon's portfolio in new tab
     window.open('https://marlonbarrios.github.io/', '_blank');
+    return true;
+  }
+  
+  return false;
+}
+
+function handleModelMenuClick(p, mouseX, mouseY) {
+  // Check if clicking on model menu button
+  if (modelMenuButton && 
+      mouseX >= modelMenuButton.x && mouseX <= modelMenuButton.x + modelMenuButton.w &&
+      mouseY >= modelMenuButton.y && mouseY <= modelMenuButton.y + modelMenuButton.h) {
+    showModelMenu = !showModelMenu;
+    showLanguageMenu = false; // Close language menu
+    console.log('Model menu toggled:', showModelMenu);
+    return true;
+  }
+  
+  // Check if clicking inside dropdown menu
+  if (showModelMenu && modelMenuButton) {
+    let menuY = modelMenuButton.y + modelMenuButton.h + 5;
+    let itemHeight = 45; // Match the rendering itemHeight
+    let maxMenuHeight = Math.min(300, p.height - menuY - 50);
+    let maxVisible = Math.floor(maxMenuHeight / itemHeight);
+    let menuHeight = Math.min(maxMenuHeight, availableModels.length * itemHeight);
+    
+    // Calculate dynamic dropdown width (same logic as in rendering)
+    let maxTextWidth = 0;
+    p.textSize(Math.max(10, Math.min(12, p.width * 0.007)));
+    for (let model of availableModels) {
+      let nameWidth = p.textWidth(model.name);
+      let descText = model.description;
+      if (descText.length > 60) {
+        descText = descText.substring(0, 57) + "...";
+      }
+      p.textSize(Math.max(8, Math.min(9, p.width * 0.006)));
+      let descWidth = p.textWidth(descText);
+      let totalWidth = Math.max(nameWidth, descWidth);
+      maxTextWidth = Math.max(maxTextWidth, totalWidth);
+    }
+    let dropdownWidth = Math.max(modelMenuButton.w, maxTextWidth + 40);
+    
+    // Ensure minimum height
+    if (menuHeight < itemHeight * 3) {
+      menuHeight = Math.min(itemHeight * 3, availableModels.length * itemHeight);
+    }
+    
+    if (mouseX >= modelMenuButton.x && mouseX <= modelMenuButton.x + dropdownWidth &&
+        mouseY >= menuY && mouseY <= menuY + menuHeight) {
+      
+      let clickedIndex = Math.floor((mouseY - menuY) / itemHeight);
+      let actualIndex = modelScrollOffset + clickedIndex;
+      
+      if (actualIndex >= 0 && actualIndex < availableModels.length) {
+        let oldModel = selectedModel;
+        selectedModel = availableModels[actualIndex].id;
+        showModelMenu = false;
+        
+        console.log(`Model changed from ${oldModel} to ${selectedModel}`);
+        
+        // Button width stays the same for symmetry (no longer dynamic)
+        
+        // Regenerate if we're viewing a quote to see the difference
+        if (!isLoading && textToShow) {
+          isLoading = true;
+          targetSpeed = 4.0;
+          // Trigger regeneration with new model
+          setTimeout(() => {
+            chat(getCurrentPrompt());
+          }, 500);
+        }
+      }
+      return true;
+    }
+  }
+  
+  // Click outside closes menu
+  if (showModelMenu) {
+    showModelMenu = false;
     return true;
   }
   
@@ -948,12 +1305,47 @@ const sketch = p => {
     canvas.style.left = '0';
     canvas.style.zIndex = '0';
     
+    // Both buttons will have identical dimensions and spacing
+    let cornerMargin = 10; // Same margin for both corners
+    let buttonWidth = 100;  // Same width for both buttons
+    let buttonHeight = 30;  // Same height for both buttons
+    
+    // Set up model menu button (top left) - identical spacing
+    modelMenuButton = {
+      x: cornerMargin,
+      y: cornerMargin,
+      w: buttonWidth,
+      h: buttonHeight
+    };
+    
+    // Set up language menu button (top right) - identical spacing
+    languageMenuButton = {
+      x: p.width - buttonWidth - cornerMargin,
+      y: cornerMargin,
+      w: buttonWidth,
+      h: buttonHeight
+    };
+    
+    // Load memory from previous sessions
+    loadMemoryFromStorage();
+    
     // Keep loader visible until user interaction
     // isLoading starts as true and stays true until spacebar is pressed
   };
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
+    
+    // Update button positions with identical spacing when window resizes
+    let cornerMargin = 10;
+    let buttonWidth = 100;
+    
+    if (languageMenuButton) {
+      languageMenuButton.x = p.width - buttonWidth - cornerMargin;
+    }
+    if (modelMenuButton) {
+      modelMenuButton.x = cornerMargin;
+    }
   };
 
   p.keyPressed = function() {
@@ -1079,11 +1471,21 @@ Context: [COMPREHENSIVE OTHERNESS ANALYSIS - Write EXACTLY 2-3 concise sentences
  
   async function chat(prompt) {
     try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-4",
-        temperature: 0.8,
+      // Configure model-specific parameters
+      let modelConfig = {
+        model: selectedModel,
         messages: [{ "role": "user", "content": prompt }]
-      });
+      };
+      
+      // Add model-specific parameters
+      if (selectedModel === "gpt-5") {
+        modelConfig.reasoning_effort = "low"; // For faster responses suitable for interactive art
+        modelConfig.verbosity = "medium"; // Balanced detail for educational content
+      } else if (selectedModel === "gpt-4") {
+        modelConfig.temperature = 0.8; // Traditional parameter for GPT-4
+      }
+      
+      const completion = await openai.chat.completions.create(modelConfig);
 
       textToShow = completion.choices[0].message.content;
       
@@ -1205,21 +1607,22 @@ Context: [COMPREHENSIVE OTHERNESS ANALYSIS - Write EXACTLY 2-3 concise sentences
           p.fill(100, 100, 100);
           p.text("Check console for details", p.width / 2, p.height / 2 + 15);
           // Don't return here - let the language menu draw at the end
-        } else {
+    } else {
           // Use the professional layout system
           renderProfessionalLayout(p, quote, author, context);
         }
       } else {
         // Fallback for text without proper formatting
         p.textAlign(p.CENTER, p.CENTER);
-        p.fill(p.color(50));
+      p.fill(p.color(50));
         p.textSize(20);
         let margin = p.width * 0.1;
         p.text(textToShow, margin, p.height / 2 - 50, p.width - (margin * 2), 100);
       }
     }
     
-    // ALWAYS draw language menu LAST so it appears on top of all content
+    // ALWAYS draw menus LAST so they appear on top of all content
+    drawModelMenu(p);
     drawLanguageMenu(p);
   };
 
@@ -1229,11 +1632,48 @@ Context: [COMPREHENSIVE OTHERNESS ANALYSIS - Write EXACTLY 2-3 concise sentences
       return false; // Prevent default if footer link was clicked
     }
     
+    // Handle model menu clicks
+    if (handleModelMenuClick(p, p.mouseX, p.mouseY)) {
+      return false; // Prevent default if model menu was clicked
+    }
+    
     // Handle language menu clicks
     return !handleLanguageMenuClick(p, p.mouseX, p.mouseY);
   };
 
   p.mouseWheel = function(event) {
+    // Handle scrolling in model menu
+    if (showModelMenu && modelMenuButton) {
+      let menuY = modelMenuButton.y + modelMenuButton.h + 5;
+      let itemHeight = 45; // Match the rendering itemHeight
+      let maxMenuHeight = Math.min(300, p.height - menuY - 50);
+      let maxVisible = Math.floor(maxMenuHeight / itemHeight);
+      let menuHeight = Math.min(maxMenuHeight, availableModels.length * itemHeight);
+      
+      // Calculate dynamic dropdown width for scroll detection
+      let maxTextWidth = 0;
+      p.textSize(Math.max(10, Math.min(12, p.width * 0.007)));
+      for (let model of availableModels) {
+        let nameWidth = p.textWidth(model.name);
+        maxTextWidth = Math.max(maxTextWidth, nameWidth);
+      }
+      let dropdownWidth = Math.max(modelMenuButton.w, maxTextWidth + 40);
+      
+      if (p.mouseX >= modelMenuButton.x && p.mouseX <= modelMenuButton.x + dropdownWidth &&
+          p.mouseY >= menuY && p.mouseY <= menuY + menuHeight) {
+        
+        let maxScroll = Math.max(0, availableModels.length - maxVisible);
+        
+        if (event.delta > 0) {
+          modelScrollOffset = Math.min(maxScroll, modelScrollOffset + 1);
+        } else {
+          modelScrollOffset = Math.max(0, modelScrollOffset - 1);
+        }
+        
+        return false; // Prevent default scrolling
+      }
+    }
+    
     // Handle scrolling in language menu
     if (showLanguageMenu && languageMenuButton) {
       let menuY = languageMenuButton.y + languageMenuButton.h + 5;
@@ -1565,7 +2005,9 @@ function displayLoader(p) {
     p.textStyle(p.NORMAL);
     
     // Technical info
-    p.text('Powered by OpenAI | Model: GPT-4', p.width / 2, footerY + 42);
+    let currentModel = availableModels.find(m => m.id === selectedModel);
+    let modelDisplayName = currentModel ? currentModel.name : selectedModel;
+    p.text(`Powered by OpenAI | Model: ${modelDisplayName}`, p.width / 2, footerY + 42);
     
     // Last updated
     p.text('Last updated: August 30, 2025 at 04:24 PM', p.width / 2, footerY + 56);
