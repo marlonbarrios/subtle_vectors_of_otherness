@@ -13,23 +13,28 @@ This interactive installation presents historical and contemporary quotes from l
 ## Screenshots
 
 ### Home Page - Multilingual Interface
-![Home Page with Curly Vector Animation](Screenshot%202025-08-30%20at%2011.14.47%20AM.png)
+<img src="01-homepage-multilingual-interface.png" alt="Home Page with Curly Vector Animation" width="800">
+
 *The installation's home page featuring the dynamic curly vector animation, artwork definition, and multilingual language selection interface.*
 
 ### Quote Generation - Critical Analysis
-![Generated Quote with Analysis](Screenshot%202025-08-30%20at%2011.49.08%20AM.png)
+<img src="02-quote-generation-analysis.png" alt="Generated Quote with Analysis" width="800">
+
 *Example of generated content showing a historical quote with comprehensive otherness analysis, demonstrating the installation's educational approach.*
 
 ### Language Selection Menu
-![Multilingual Support](Screenshot%202025-08-30%20at%201.27.21%20PM.png)
+<img src="03-language-selection-menu.png" alt="Multilingual Support" width="800">
+
 *The scrollable language selection menu showing support for 70+ languages with proper font rendering for diverse writing systems.*
 
 ### Professional Text Layout
-![Responsive Typography](Screenshot%202025-08-30%20at%202.17.58%20PM.png)
+<img src="04-professional-text-layout.png" alt="Responsive Typography" width="800">
+
 *Demonstration of the advanced liquid typography system that adapts to different content lengths and screen sizes.*
 
 ### Exhibition Footer
-![Project Attribution](Screenshot%202025-08-30%20at%202.40.52%20PM.png)
+<img src="05-exhibition-footer.png" alt="Project Attribution" width="800">
+
 *The footer section displaying project credits, exhibition information, and interactive portfolio link for the Pangea_IA collaboration.*
 
 ## Concept
