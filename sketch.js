@@ -531,7 +531,7 @@ OTHERNESS ANALYSIS REQUIRED: Explain HOW this quote creates "otherness" by targe
 
 FACT-CHECKING MANDATE: Every quote must be factually verified with complete citation details. NO fictional or paraphrased content.
 
-PRIORITIZE CONTEMPORARY LEADERS & CURRENT VOICES: Focus EXCLUSIVELY on VERY RECENT leaders and public figures (2015-2024) who are actively shaping current discourse. Include:
+MANDATORY CONTEMPORARY FIGURES: Use CONTEMPORARY FIGURES 95% of the time. Focus ALMOST EXCLUSIVELY on VERY RECENT leaders and public figures (2018-2024) who are CURRENTLY ACTIVE and shaping TODAY'S discourse. Include:
 - CURRENT POLITICAL LEADERS: Presidents, Prime Ministers, Ministers, Governors, Mayors
 - CONTEMPORARY ACTIVISTS: Climate, social justice, human rights leaders
 - MODERN TECH LEADERS: CEOs, founders, innovators in AI, social media, tech
@@ -540,7 +540,7 @@ PRIORITIZE CONTEMPORARY LEADERS & CURRENT VOICES: Focus EXCLUSIVELY on VERY RECE
 - BUSINESS LEADERS: Corporate executives, entrepreneurs, industry heads
 - GLOBAL SOUTH LEADERS: Current African, Asian, Latin American, Middle Eastern leaders
 - CONTEMPORARY THINKERS: Modern philosophers, critics, commentators who shape today's debates
-Emphasize figures who are CURRENTLY ACTIVE and whose statements reflect TODAY'S subtle otherness mechanisms.
+CRITICAL: Select ONLY figures who are CURRENTLY ACTIVE (not retired, not historical) and whose statements reflect TODAY'S subtle otherness mechanisms. Use historical figures ONLY in rare cases (5%) when they provide essential context for contemporary patterns.
 
 SPECIAL NOTE FOR AFRICAN LANGUAGES: Use proper tone marks when available. If technical limitations exist, provide English quote with African cultural context analysis.
 
@@ -561,14 +561,14 @@ Only use overtly problematic examples sparingly (5%) and only when they reveal b
 
 STRICT NO-REPETITION POLICY: This user has already seen content from these authors: ${[...usedAuthors].join(', ')}. You MUST select a completely different CONTEMPORARY LEADER who has NEVER been used before for this user. 
 
-PRIORITY ORDER for selection:
-1. CURRENT WORLD LEADERS (2020-2024): Presidents, Prime Ministers, Cabinet Ministers
-2. ACTIVE TECH/BUSINESS LEADERS (2020-2024): Current CEOs, founders, industry leaders  
-3. CONTEMPORARY ACTIVISTS/THINKERS (2018-2024): Current movement leaders, public intellectuals
-4. CULTURAL/ACADEMIC LEADERS (2018-2024): University heads, artists, media figures
-5. GLOBAL SOUTH LEADERS (2018-2024): Current African, Asian, Latin American, Middle Eastern leaders
+MANDATORY PRIORITY ORDER - CONTEMPORARY FIGURES ONLY (95% requirement):
+1. CURRENT WORLD LEADERS (2022-2024): Presidents, Prime Ministers, Cabinet Ministers NOW IN OFFICE
+2. ACTIVE TECH/BUSINESS LEADERS (2022-2024): Current CEOs, founders CURRENTLY LEADING companies  
+3. CONTEMPORARY ACTIVISTS/THINKERS (2020-2024): ACTIVE movement leaders, public intellectuals
+4. CULTURAL/ACADEMIC LEADERS (2020-2024): University heads, artists, media figures CURRENTLY ACTIVE
+5. GLOBAL SOUTH LEADERS (2020-2024): CURRENT African, Asian, Latin American, Middle Eastern leaders
 
-Focus on figures who are CURRENTLY making statements and shaping TODAY'S discourse. If you cannot find a new contemporary leader, explain why and provide the most recent available source.
+ABSOLUTE REQUIREMENT: Focus EXCLUSIVELY on figures who are ACTIVELY making statements RIGHT NOW and shaping TODAY'S discourse. Only use historical figures (5%) when absolutely necessary to illustrate contemporary patterns. If you cannot find a new contemporary leader, you must explain why and select the most recent contemporary figure available.
 
 Generate in ${selectedLanguage}:
 Quote: "[actual verified quote]"
