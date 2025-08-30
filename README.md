@@ -29,11 +29,6 @@ This interactive installation presents historical and contemporary quotes from l
 
 *The scrollable language selection menu showing support for 70+ languages with proper font rendering for diverse writing systems.*
 
-### Professional Text Layout
-<img src="04-professional-text-layout.png" alt="Responsive Typography" width="800">
-
-*Demonstration of the advanced liquid typography system that adapts to different content lengths and screen sizes.*
-
 ### Exhibition Footer
 <img src="05-exhibition-footer.png" alt="Project Attribution" width="800">
 
