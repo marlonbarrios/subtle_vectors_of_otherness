@@ -531,7 +531,16 @@ OTHERNESS ANALYSIS REQUIRED: Explain HOW this quote creates "otherness" by targe
 
 FACT-CHECKING MANDATE: Every quote must be factually verified with complete citation details. NO fictional or paraphrased content.
 
-PRIORITIZE CONTEMPORARY & DIVERSE SOURCES: Focus on RECENT leaders, thinkers, and public figures (2000-2024) from Global South, Indigenous communities, marginalized voices, and contemporary discourse. Include modern politicians, activists, academics, tech leaders, cultural figures, and public intellectuals who shape current debates. Emphasize CONTEMPORARY RELEVANCE over historical figures.
+PRIORITIZE CONTEMPORARY LEADERS & CURRENT VOICES: Focus EXCLUSIVELY on VERY RECENT leaders and public figures (2015-2024) who are actively shaping current discourse. Include:
+- CURRENT POLITICAL LEADERS: Presidents, Prime Ministers, Ministers, Governors, Mayors
+- CONTEMPORARY ACTIVISTS: Climate, social justice, human rights leaders
+- MODERN TECH LEADERS: CEOs, founders, innovators in AI, social media, tech
+- CURRENT ACADEMICS: University leaders, researchers, public intellectuals
+- CULTURAL FIGURES: Artists, writers, influencers, media personalities
+- BUSINESS LEADERS: Corporate executives, entrepreneurs, industry heads
+- GLOBAL SOUTH LEADERS: Current African, Asian, Latin American, Middle Eastern leaders
+- CONTEMPORARY THINKERS: Modern philosophers, critics, commentators who shape today's debates
+Emphasize figures who are CURRENTLY ACTIVE and whose statements reflect TODAY'S subtle otherness mechanisms.
 
 SPECIAL NOTE FOR AFRICAN LANGUAGES: Use proper tone marks when available. If technical limitations exist, provide English quote with African cultural context analysis.
 
@@ -550,7 +559,16 @@ SUBTLETY MANDATE: Focus EXCLUSIVELY on statements that appear positive, neutral,
 - EMPATHETIC EXPRESSIONS that distance rather than connect
 Only use overtly problematic examples sparingly (5%) and only when they reveal broader patterns of subtle exclusion.
 
-STRICT NO-REPETITION POLICY: This user has already seen content from these authors: ${[...usedAuthors].join(', ')}. You MUST select a completely different author who has NEVER been used before for this user. Focus on NEW contemporary voices (2000-2024) including modern politicians, activists, tech leaders, academics, cultural figures, and public intellectuals. If you cannot find a new author, provide the most recent contemporary source available that hasn't been used.
+STRICT NO-REPETITION POLICY: This user has already seen content from these authors: ${[...usedAuthors].join(', ')}. You MUST select a completely different CONTEMPORARY LEADER who has NEVER been used before for this user. 
+
+PRIORITY ORDER for selection:
+1. CURRENT WORLD LEADERS (2020-2024): Presidents, Prime Ministers, Cabinet Ministers
+2. ACTIVE TECH/BUSINESS LEADERS (2020-2024): Current CEOs, founders, industry leaders  
+3. CONTEMPORARY ACTIVISTS/THINKERS (2018-2024): Current movement leaders, public intellectuals
+4. CULTURAL/ACADEMIC LEADERS (2018-2024): University heads, artists, media figures
+5. GLOBAL SOUTH LEADERS (2018-2024): Current African, Asian, Latin American, Middle Eastern leaders
+
+Focus on figures who are CURRENTLY making statements and shaping TODAY'S discourse. If you cannot find a new contemporary leader, explain why and provide the most recent available source.
 
 Generate in ${selectedLanguage}:
 Quote: "[actual verified quote]"
