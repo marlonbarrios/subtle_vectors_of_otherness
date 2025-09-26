@@ -223,4 +223,4 @@ For exhibition opportunities, technical support, or collaboration inquiries:
 
 ---
 
-*"Subtle Vectors of Otherness" is designed to foster critical thinking about language, power, and identity in contemporary society. The installation encourages viewers to examine not just overt discrimination, but the subtle ways that everyday language can perpetuate systems of exclusion and othering.*
+*"Subtle Vectors of Otherness" is designed to foster critical thinking about language, power, and identity in contemporary society. The installation encourages viewers to examine not just overt discrimination, but the subtle ways that everyday language can perpetuate systems of exclusion and othering.*# Updated: Fri Sep 26 20:41:06 CEST 2025
