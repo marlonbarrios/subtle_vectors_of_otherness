@@ -1,6 +1,6 @@
 # Subtle Vectors of Otherness
 
-An interactive generative art installation that reveals how seemingly reasonable language creates division and exclusion through subtle mechanisms of othering.
+An interactive generative art installation that generates philosophical reasoning about microaggressions and subtle vectors of otherness, providing wisdom to recognize and address everyday discrimination.
 
 **🌐 [Experience the Live Installation](https://subtle-vectors-of-otherness.vercel.app/)**
 
@@ -8,11 +8,11 @@ An interactive generative art installation that reveals how seemingly reasonable
 
 ## About the Installation
 
-**Subtle Vectors of Otherness** is a critical media art installation designed for art exhibitions that explores the origins and mechanisms of racism, colonialism, and oppression. The work examines how language—even when it appears neutral or beneficial—can carry hidden vectors of otherness that create division and exclusion.
+**Subtle Vectors of Otherness** is a critical media art installation designed for art exhibitions that generates ongoing philosophical reasoning about microaggressions and subtle forms of discrimination. The work illuminates how seemingly innocent interactions can perpetuate systems of oppression and provides practical wisdom for recognizing and addressing these patterns.
 
 This installation is part of **Pangea_IA**, a collaborative project developed in partnership with **Maria Luisa Angulo** that explores the intersection of artificial intelligence, cultural identity, and critical discourse in contemporary digital art practices.
 
-This interactive installation presents historical and contemporary quotes from leaders, thinkers, and public figures, accompanied by critical analysis that reveals the subtle ways these statements contribute to systems of oppression. The work prioritizes voices and perspectives from the Global South, Indigenous communities, and marginalized populations to provide a comprehensive understanding of how otherness operates across cultures and contexts.
+This interactive installation generates real-time philosophical reasoning about different types of microaggressions—racial, gender, sexuality, class, disability, age, religion, nationality, body size, neurodiversity, and educational hierarchies. Each generation provides concrete examples, explains psychological impacts, and offers actionable guidance for recognition and response. The work operates across 70+ languages and prioritizes diverse global perspectives on subtle discrimination.
 
 ## Screenshots
 
@@ -21,10 +21,10 @@ This interactive installation presents historical and contemporary quotes from l
 
 *The installation's home page featuring the dynamic curly vector animation, artwork definition, and multilingual language selection interface.*
 
-### Quote Generation - Critical Analysis
-<img src="02-quote-generation-analysis.png" alt="Generated Quote with Analysis" width="800">
+### Philosophical Reasoning - Microaggression Analysis
+<img src="02-quote-generation-analysis.png" alt="Generated Philosophical Reasoning" width="800">
 
-*Example of generated content showing a historical quote with comprehensive otherness analysis, demonstrating the installation's educational approach.*
+*Example of generated philosophical reasoning about microaggressions, showing concrete examples, psychological impact analysis, and actionable response strategies.*
 
 ### Language Selection Menu
 <img src="03-language-selection-menu.png" alt="Multilingual Support" width="800">
@@ -38,12 +38,13 @@ This interactive installation presents historical and contemporary quotes from l
 
 ## Concept
 
-The installation reveals how oppression operates through language at multiple levels:
+The installation generates philosophical reasoning about microaggressions across multiple dimensions:
 
-- **Overt vs. Subtle Oppression**: While some statements are clearly harmful, others appear reasonable or even beneficial while still carrying discriminatory implications
-- **Intersectionality**: Examining how different forms of oppression (race, gender, sexuality, class, disability, religion, age, nationality, etc.) intersect and compound
-- **Global Perspective**: Prioritizing diverse sources from Africa, Asia, Latin America, the Middle East, Indigenous communities, and postcolonial contexts
-- **Critical Analysis**: Each quote is accompanied by educational context that explains why and how it generates otherness
+- **Recognition Training**: Teaching viewers to identify subtle forms of discrimination through concrete examples and specific phrases
+- **Impact Understanding**: Explaining the cumulative psychological and social effects of microaggressions on marginalized communities
+- **Intersectionality**: Examining how different forms of subtle discrimination (race, gender, sexuality, class, disability, religion, age, nationality, body size, neurodiversity, education) intersect and compound
+- **Actionable Response**: Providing step-by-step guidance for addressing microaggressions as witness, target, or perpetrator
+- **Global Perspective**: Including examples relevant to different cultural contexts and contemporary manifestations across digital spaces, workplaces, schools, and healthcare
 
 ## Features
 
@@ -53,25 +54,29 @@ The installation reveals how oppression operates through language at multiple le
 - **Cultural Sensitivity**: Language-specific considerations and culturally appropriate content
 
 ### 🎨 **Interactive Experience**
-- **Symmetrical Interface**: Perfectly balanced model selection (top-left) and language selection (top-right)
-- **Spacebar Generation**: Press spacebar to generate new content
+- **Continuous Generation**: Press spacebar to activate continuous mode with 2-minute intervals
+- **Bottom-to-Top Scrolling**: Text scrolls upward for contemplative reading experience
+- **Randomized Content**: Smart system prevents repetitive examples across 11 microaggression categories
 - **Language Selection**: Scrollable dropdown menu with all available languages
-- **Model Selection**: Choose between GPT-4 and GPT-5 for different analysis styles
+- **Consistent Typography**: Stable font sizes across all generations for optimal readability
 - **Responsive Design**: Adapts to different screen sizes and devices
 - **Smooth Animations**: Dynamic loading animation with curly vector patterns
 - **Minimal Design**: Clean grayscale interface suitable for exhibition spaces
 
 ### 🧠 **AI-Powered Content**
-- **Dual Model Support**: Choice between GPT-4 (default, reliable) and GPT-5 (advanced reasoning)
-- **Model Selection Interface**: Top-left button for switching between AI models
-- **Memory System**: Prevents repetition and builds contextual awareness
-- **Fact-Checking**: Strict requirements for historically accurate quotes and sources
-- **Educational Context**: Comprehensive "otherness analysis" for each quote
+- **Philosophical Reasoning**: Generates insightful wisdom about recognizing and addressing microaggressions
+- **Smart Randomization**: Rotates through 11 different categories (racial, gender, sexuality, class, disability, age, religion, nationality, body size, neurodiversity, educational)
+- **Memory System**: Tracks recent themes to ensure diverse content and prevent repetition
+- **Concrete Examples**: Provides specific phrases, behaviors, and real-world scenarios
+- **Actionable Guidance**: Step-by-step instructions for recognition and response strategies
+- **Cultural Context**: Examples relevant to different global contexts and intersectional identities
 
 ### 📱 **Technical Features**
 - **Liquid Typography**: Responsive text that adapts to content and screen size
+- **Consistent Font Sizing**: Stable typography across generations with gentle scaling only when necessary
+- **Scrolling Animation**: Smooth bottom-to-top text movement with adjustable speed
+- **Auto-Generation**: Automatic content generation every 2 minutes in continuous mode
 - **Professional Layout**: Advanced p5.js text rendering with overflow protection
-- **Multi-stage Scaling**: Guarantees all content fits without truncation
 - **Error Handling**: Robust validation and user feedback
 
 ## Installation Setup
@@ -105,20 +110,21 @@ The installation reveals how oppression operates through language at multiple le
 ## How to Use
 
 ### **For Exhibition Visitors:**
-1. **Choose AI Model**: Click the model button (top-left) to select GPT-4 or GPT-5
-2. **Select Language**: Click the language dropdown (top-right) to choose from 70+ languages
-3. **Read Definition**: The home page explains what "Subtle Vectors of Otherness" means
-4. **Generate Content**: Press SPACEBAR to generate a quote and analysis
-5. **Navigate**: Press ESC to return to the home page, SPACEBAR to generate new content
-6. **Switch Models**: Try different AI models to compare analysis styles
+1. **Select Language**: Click the language dropdown (top-right) to choose from 70+ languages
+2. **Read Definition**: The home page explains what "Subtle Vectors of Otherness" means
+3. **Activate Generation**: Press SPACEBAR to start continuous generation mode
+4. **Read & Contemplate**: Each philosophical reasoning appears for 2 minutes with scrolling animation
+5. **Generate New Content**: Press SPACEBAR again to immediately generate new reasoning and restart the cycle
+6. **Navigate**: Press ESC to return to the home page and stop continuous mode
 
 ### **For Curators and Exhibitors:**
 - **Full-screen Mode**: The installation is designed for full-screen display
-- **Model Control**: Choose GPT-4 for reliable, cost-effective operation or GPT-5 for advanced analysis
-- **Symmetrical Design**: Professional interface with balanced corner controls
+- **Continuous Operation**: 2-minute intervals provide contemplative pacing for exhibition spaces
+- **Diverse Content**: Smart randomization ensures visitors see different microaggression categories
+- **Multilingual**: Supports 70+ languages for international exhibitions
 - **No Internet Required**: Once loaded, works offline (except for new generations)
 - **Accessible**: Supports screen readers and keyboard navigation
-- **Educational**: Each quote includes context about why it demonstrates otherness
+- **Educational**: Each generation provides concrete examples and actionable guidance
 
 ## Technical Architecture
 
@@ -128,70 +134,81 @@ The installation reveals how oppression operates through language at multiple le
 - **Vanilla JavaScript**: No framework dependencies for maximum compatibility
 
 ### **AI Integration**
-- **Dual Model Support**: GPT-4 (default) and GPT-5 with model-specific optimizations
-- **Smart Configuration**: Reasoning parameters for GPT-5, temperature control for GPT-4
-- **Custom Prompts**: Sophisticated prompt engineering for educational content
-- **Multi-language Support**: Consistent generation across all supported languages
+- **OpenAI GPT Integration**: Advanced language models for generating philosophical reasoning
+- **Smart Randomization**: Algorithmic selection of microaggression categories to prevent repetition
+- **Custom Prompts**: Sophisticated prompt engineering focused on microaggression education
+- **Multi-language Support**: Consistent generation across all supported languages with strong language enforcement
+- **Memory Management**: Contextual tracking of recent themes and response approaches
 
 ### **Text Rendering**
 - **Liquid Typography**: Custom text wrapping and sizing system
 - **Font Management**: Language-specific font stacks for proper character display
-- **Responsive Layout**: Adapts to content length and screen size
-- **Symmetrical UI**: Perfectly balanced interface with identical button styling
+- **Consistent Sizing**: Stable font sizes across generations with minimal scaling
+- **Scrolling Animation**: Bottom-to-top text movement with configurable speed
+- **Responsive Layout**: Adapts to content length and screen size while maintaining readability
 
 ## Content Guidelines
 
-The installation focuses on **subtle mechanisms of otherness** rather than overtly hateful content:
+The installation generates **philosophical reasoning about microaggressions** across diverse contexts:
 
-### **Appropriate Content:**
-- Statements that appear neutral but contain hidden biases
-- Historical quotes that reveal systemic thinking patterns
-- Contemporary examples of subtle discrimination
-- Educational analysis of power structures and language
+### **Content Categories:**
+- **Racial Microaggressions**: "Where are you really from?", assumptions about competence, cultural appropriation
+- **Gender Microaggressions**: Interrupting women, questioning expertise, appearance comments
+- **Sexuality Microaggressions**: Heteronormative assumptions, visibility erasure, identity invalidation
+- **Class Microaggressions**: Assumptions about intelligence, "pulling yourself up", cultural capital
+- **Disability Microaggressions**: Inspiration porn, assumptions about capability, accessibility ignorance
+- **Religious Microaggressions**: Holiday assumptions, dietary dismissals, spiritual hierarchies
+- **Age Microaggressions**: Generational stereotypes, competency assumptions, dismissive language
+- **Nationality/Immigration**: Accent policing, citizenship questioning, cultural superiority
+- **Body Size**: Health assumptions, food policing, space occupation judgments
+- **Neurodiversity**: Pathologizing differences, communication norms, attention assumptions
+- **Educational**: Academic elitism, "common sense" assumptions, intellectual hierarchies
 
-### **Content Sources:**
-- **Global South Leaders**: Political figures, activists, intellectuals
-- **Indigenous Voices**: Traditional leaders, contemporary advocates
-- **Postcolonial Thinkers**: Critics of colonial and neocolonial systems
-- **Marginalized Communities**: Voices often excluded from mainstream discourse
-- **Historical Figures**: Those whose statements reveal systemic patterns
+### **Global Perspectives:**
+- **Cultural Context**: Examples relevant to different societies and cultural norms
+- **Intersectional Analysis**: How multiple identities compound discrimination experiences
+- **Contemporary Manifestations**: Digital spaces, workplaces, schools, healthcare settings
 
 ## Educational Value
 
 This installation serves as:
-- **Critical Media Literacy**: Teaching how language shapes perception
-- **Historical Education**: Revealing patterns of oppression across time and cultures
-- **Cultural Awareness**: Centering non-Western perspectives and experiences
-- **Intersectional Analysis**: Examining how different forms of oppression interact
+- **Microaggression Recognition Training**: Teaching viewers to identify subtle forms of discrimination
+- **Empathy Building**: Understanding the cumulative impact of seemingly small interactions
+- **Response Strategy Education**: Providing practical tools for addressing microaggressions
+- **Cultural Awareness**: Examining how subtle discrimination manifests across different contexts
+- **Intersectional Analysis**: Understanding how multiple forms of oppression compound and interact
+- **Preventive Education**: Helping people recognize and modify their own potentially harmful behaviors
 
 ## Artist Statement
 
-"Subtle Vectors of Otherness" invites viewers to examine the hidden mechanisms through which language creates division. By revealing the subtle ways that seemingly innocent statements can perpetuate systems of exclusion, the work challenges audiences to develop more critical media literacy and cultural awareness.
+"Subtle Vectors of Otherness" invites viewers to develop deeper awareness of microaggressions and subtle forms of discrimination that permeate daily interactions. By generating philosophical reasoning about these patterns, the work provides both recognition training and practical wisdom for creating more inclusive environments.
 
-The installation prioritizes voices from the Global South and marginalized communities, countering the dominance of Western perspectives in discussions of oppression and otherness. Through multilingual presentation and culturally sensitive analysis, the work demonstrates how these mechanisms operate across different cultural contexts.
+The installation operates across 70+ languages and incorporates diverse global perspectives on subtle discrimination. Through continuous generation and scrolling presentation, the work creates a contemplative space for learning about the cumulative impact of microaggressions and developing skills for recognition, response, and prevention.
 
 ## Interface Design
 
-### **Symmetrical Layout**
-The installation features a carefully designed symmetrical interface:
-- **Top-Left**: Model selection button (GPT-4/GPT-5) 
+### **Minimalist Layout**
+The installation features a clean, focused interface:
 - **Top-Right**: Language selection button (70+ languages)
-- **Identical Styling**: Both buttons use matching grayscale colors and dimensions
-- **Perfect Balance**: 10px margins from corners with 100px × 30px button size
+- **Center Stage**: Philosophical reasoning with scrolling animation
+- **Full-Width Text**: 95% of screen width for optimal readability
+- **Consistent Typography**: Stable font sizes across all generations
 - **Professional Appearance**: Clean, minimal design suitable for gallery exhibition
 
 ### **Visual Harmony**
-- **Grayscale Palette**: Subtle, non-intrusive button styling
-- **Consistent Typography**: Responsive text sizing across all interface elements  
+- **Grayscale Palette**: Subtle, non-intrusive interface styling
+- **Scrolling Animation**: Smooth bottom-to-top text movement for contemplative reading
+- **Consistent Typography**: Stable font sizes with gentle scaling when necessary
 - **Cultural Sensitivity**: Clean design works across all cultural contexts
 - **Exhibition Ready**: Professional aesthetic appropriate for museum spaces
 
 ## Technical Support
 
 ### **Common Issues:**
-- **API Key Problems**: Ensure your OpenAI API key is valid and has GPT-4/GPT-5 access
-- **Model Selection**: GPT-4 is more reliable; try switching if GPT-5 isn't working
+- **API Key Problems**: Ensure your OpenAI API key is valid and has GPT access
+- **Content Repetition**: The smart randomization system prevents this, but you can press spacebar to generate new content immediately
 - **Font Display**: Some languages may require additional system fonts
+- **Scrolling Speed**: The animation speed has been optimized for contemplative reading
 - **Performance**: Close other applications if experiencing lag during generation
 
 ### **Browser Compatibility:**
@@ -223,4 +240,18 @@ For exhibition opportunities, technical support, or collaboration inquiries:
 
 ---
 
-*"Subtle Vectors of Otherness" is designed to foster critical thinking about language, power, and identity in contemporary society. The installation encourages viewers to examine not just overt discrimination, but the subtle ways that everyday language can perpetuate systems of exclusion and othering.*# Updated: Fri Sep 26 20:41:06 CEST 2025
+*"Subtle Vectors of Otherness" is designed to foster critical awareness of microaggressions and subtle discrimination in contemporary society. The installation provides practical wisdom for recognizing, understanding, and addressing the everyday interactions that can perpetuate systems of exclusion and othering.*
+
+---
+
+## Recent Updates
+
+### **Latest Version Features:**
+- **🎲 Smart Randomization**: Prevents repetitive examples across 11 microaggression categories
+- **📏 Consistent Typography**: Stable font sizes across all generations for optimal readability  
+- **⏰ 2-Minute Intervals**: Contemplative pacing with automatic generation every 2 minutes
+- **📜 Scrolling Animation**: Bottom-to-top text movement for immersive reading experience
+- **🔄 Continuous Mode**: Press spacebar to activate ongoing generation cycle
+- **🌍 Enhanced Multilingual**: Strong language enforcement across 70+ supported languages
+
+*Updated: September 28, 2025*
